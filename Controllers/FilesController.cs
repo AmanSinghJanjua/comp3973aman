@@ -20,8 +20,8 @@ namespace MvcStar.Controllers
         }
         public IActionResult Index()
         {
-            string contentRootPath = _env.ContentRootPath;
-            string[] files = Directory.GetFiles(contentRootPath + "\\TextFiles");
+            string webRootPath = _env.WebRootPath;
+            string[] files = Directory.GetFiles(webRootPath + "\\TextFiles");
             string[] filenames = new string[files.Length];
             int i = 0;
             foreach(string file in files)
@@ -33,10 +33,10 @@ namespace MvcStar.Controllers
        
         public IActionResult Contents(string id)
         {
-            string contentRootPath = _env.ContentRootPath + "\\TextFiles\\" + id + ".txt";
+            string webRootPath = _env.WebRootPath + "\\TextFiles\\" + id + ".txt";
             try 
             {
-                    using (StreamReader sr = new StreamReader(contentRootPath))
+                    using (StreamReader sr = new StreamReader(webRootPath))
                     {
                         ViewBag.MyString = sr.ReadToEnd();                 
                     }
